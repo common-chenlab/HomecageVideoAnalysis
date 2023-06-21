@@ -20,7 +20,7 @@ https://www.bu.edu/tech/support/research/software-and-programming/common-languag
 
 Once all is done, we can now set up the conda environment used to run this code. 
 
-The conda YML file [env](conda-environments/env.yml) which contains all the necessary dependencies for this project is in the conda-environments folder.
+The conda YML file [env](conda-environment/env.yml) which contains all the necessary dependencies for this project is in the conda-environments folder.
 To create an environment with this file, run the following command:
 
 `conda env create -f conda-environments/env.yml`
