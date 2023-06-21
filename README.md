@@ -20,7 +20,7 @@ https://www.bu.edu/tech/support/research/software-and-programming/common-languag
 
 Once all is done, we can now set up the conda environment used to run this code. 
 
-The conda YML file which contains all the necessary dependencies for this project is in the `conda-environments` folder.
+The conda YML file [env](conda-environments/env.yml) which contains all the necessary dependencies for this project is in the conda-environments folder.
 To create an environment with this file, run the following command:
 
 `conda env create -f conda-environments/env.yml`
@@ -31,7 +31,7 @@ Once the **VideoAnalysisENV** environment is set up, you don't need to do this a
 
 
 ### Step 3: Running analysis
-To run the analysis, change the directory to the `scc` folder. The main shell script to analyze is `run_training_module_job_array.sh`. This script takes in two input arguments:
+To run the analysis, change the directory to the `scc` folder. The main shell script to analyze is [run_training_module_job_array.sh](scc/run_training_module_job_array.sh). This script takes in two input arguments:
 
 1. Full path to the directory that contains the video files ex. /net/claustrum/test/folder
 2. The number ID of the rigs you would like to run analysis on. If you plan to run an analysis on all videos in the directory instead of individual rigs, input `all` as the argument.
