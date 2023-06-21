@@ -34,7 +34,6 @@ from dlclive.pose import extract_cnn_output, argmax_pose_predict, multi_pose_pre
 from dlclive.display import Display
 from dlclive import utils
 from dlclive.exceptions import DLCLiveError, DLCLiveWarning
-from dlclive.processor.kalmanfilter import KalmanFilterPredictor
 
 
 class DLCLive(object):
@@ -126,7 +125,7 @@ class DLCLive(object):
         self.dynamic = dynamic
         self.dynamic_cropping = None
         self.resize = resize
-        self.processor = KalmanFilterPredictor()
+        self.processor = None
         self.convert2rgb = convert2rgb
         self.display = (
             Display(pcutoff=pcutoff, radius=display_radius, cmap=display_cmap)
@@ -440,29 +439,6 @@ class DLCLive(object):
             pose = np.array(pose_output[0])
             self.pose = pose[:, [1, 0, 2]]
 
-        # display image if display=True before correcting pose for cropping/resizing
-
-        # if self.display is not None:
-        #     self.display.display_frame(frame, self.pose)
-
-        # # if frame is cropped, convert pose coordinates to original frame coordinates
-
-        # if self.resize is not None:
-        #     self.pose[:, :2] *= 1 / self.resize
-
-        # if self.cropping is not None:
-        #     self.pose[:, 0] += self.cropping[0]
-        #     self.pose[:, 1] += self.cropping[2]
-
-        # if self.dynamic_cropping is not None:
-        #     self.pose[:, 0] += self.dynamic_cropping[0]
-        #     self.pose[:, 1] += self.dynamic_cropping[2]
-
-        # # process the pose
-
-        # if self.processor:
-        #     self.pose = self.processor.process(self.pose, **kwargs)
-        
         return self.pose
 
     def close(self):

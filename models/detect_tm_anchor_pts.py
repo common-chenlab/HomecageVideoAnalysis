@@ -1,7 +1,10 @@
+import sys
 import cv2
-from dlclive.dlclive import DLCLive
 import numpy as np
 import os
+
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+from dlclive.dlclive import DLCLive
 import utils
 
 
