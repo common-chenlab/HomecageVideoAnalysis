@@ -9,12 +9,13 @@ import stat
 import time
 import traceback
 import utils
-from constants import folder_paths, modelinfo
-from computervisiontasks.led_detection import led_status_check, led_movement_check
-from objectdetection.object_detection import get_object_location
+
+from paths import folder_paths, modelinfo
+from models.led_tracker import led_status_check, led_movement_check
+from models.detect_objects import get_object_location
 
 class TrainingModuleAnalysis():
-    def __init__(self, video_path, dlcmodels, ocr, mousecoatrecognition, tmdetectionmodel):
+    def __init__(self, video_path, mouseposemodels, ocr, mousecoatrecognition, tmdetectionmodel):
         """ object for data analysis  """
 
         # full path to video file
@@ -41,7 +42,7 @@ class TrainingModuleAnalysis():
         self.error_folder = utils.ospath(path = folder_paths['errortm'])
 
         # deeplabcut models
-        self.dlcmodels = dlcmodels
+        self.mouseposemodels = mouseposemodels
 
         # ocr object
         self.ocr = ocr
@@ -177,11 +178,11 @@ class TrainingModuleAnalysis():
         elif self.padding_for_aspect_ratio[0] == 'x': :
             frame = cv2.copyMakeBorder(frame, 0,0,0,self.padding_for_aspect_ratio[1],cv2.BORDER_CONSTANT) # width padding
 
-        # DLC model was trained on 400x300 dim frames
+        # Mouse pose DLC model was trained on 400x300 dim frames
         frame = cv2.resize(frame, (400,300))
 
-        # dlc prediction
-        dlcmarkers = self.dlcmodels[self.TRIALDATA['mousecoatcolor']['prediction']].get_pose(np.array([frame]))
+        # mouse pose prediction
+        dlcmarkers = self.mouseposemodels.run_inference(frame = frame, key = self.TRIALDATA['mousecoatcolor']['prediction'])
         return dlcmarkers
 
 

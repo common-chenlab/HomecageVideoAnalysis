@@ -8,12 +8,11 @@ import shutil
 import time
 import gc
 
-from dlclive.dlclive import DLCLive
-from constants import folder_paths, modelinfo
-from vatm import TrainingModuleAnalysis
-from computervisiontasks.ocr import TimestampOCR
-from objectdetection.tm_dlc_detection import DetectTMwDLC
-from mousecoatrecognition import MouseCoatRecognitionTM
+from paths import folder_paths, modelinfo
+from training_module_analysis import TrainingModuleAnalysis
+from models.timestamp_ocr import TimestampOCR
+from models.detect_tm_anchor_pts import DetectTMAnchorPts
+from model.cloast_classifier import CoatClassifier
 from slackpython import SendSlackNotification
 
 
@@ -21,7 +20,7 @@ def get_args():
     """ gets arguments from commnad line """
     parser = argparse.ArgumentParser(
         description="Parsing arugment for video path",
-        epilog="python file.py -s WFR4F4EF151EF86E4_9_5"
+        epilog="python file.py --jfn test.json -ta 1"
     )
     # required argument
     parser.add_argument("--json_file_name", '-jfn', required=False, help='name of json file with video paths.')
@@ -53,30 +52,23 @@ if __name__ == '__main__':
         video_path_list = utils.move_videos_2_scc_scratch(video_path_list = video_path_list)
 
     # initialize mouse coat recognition model
-    mousecoatrecognition = MouseCoatRecognitionTM(model_path = utils.ospath(path = modelinfo['coatrecognition']))
+    mousecoatrecognition = CoatClassifier(model_path = utils.ospath(path = modelinfo['coatrecognition']))
 
     # training module DLC model
-    tmdetectionmodel = DetectTMwDLC(model_path = utils.ospath(modelinfo['tmdetection']))
+    tmdetectionmodel = DetectTMAnchorPts(model_path = utils.ospath(modelinfo['tmdetection']))
 
     # initialize tesserocr (optical character recognition) model
     ocr = TimestampOCR(camera_view = 'TM', model_path = utils.ospath(path = modelinfo['ocr']))
 
     # mouse DLC models
-    dlc_model_paths = modelinfo['dlctm']['model_paths']
-
-    # initialize DLCLive
-    dlcmodels = {}
-    for key in dlc_model_paths:
-        dlcmodels[key] = DLCLive(utils.ospath(path = dlc_model_paths[key]), display = False)
-        dlcmodels[key].init_inference()
-    print("Successfully initialized DeepLabCut model(s)")
-
+    mouseposemodels = DetectMousePose(model_paths = modelinfo['dlctm']['model_paths'])
+    
     # run through all videos in list
     for video_path in video_path_list:
         va_object = None
         print('\n')
         try:
-            va_object = TrainingModuleAnalysis(video_path = video_path, dlcmodels = dlcmodels, ocr = ocr, 
+            va_object = TrainingModuleAnalysis(video_path = video_path, mouseposemodels = mouseposemodels, ocr = ocr, 
                 mousecoatrecognition = mousecoatrecognition, tmdetectionmodel = tmdetectionmodel)
             va_object.run()
 
@@ -90,8 +82,5 @@ if __name__ == '__main__':
                 traceback.print_exc()
         gc.collect()
 
-    # after completion, close all models used
-    for key in dlcmodels:
-        dlcmodels[key].close()
     print("Complete.")
     sys.exit()
