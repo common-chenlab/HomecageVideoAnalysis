@@ -43,10 +43,10 @@ modelinfo['dlctm'] = {
 modelinfo['dlccv'] = { 
                         'model_paths':
                             {
-                            'blackwhite': r'Z:\Projects\Homecage\DLC\VAModels\DLC\cageview\whitewhite\cageview_v3_whitemice_white-chenlab-2022-06-27\exported-models\DLC_cageview_v3_whitemice_white_mobilenet_v2_1.0_iteration-0_shuffle-1',
+                            'blackwhite': r'Z:\Projects\Homecage\DLC\VAModels\DLC\cageview\blackwhite\cageview_v3_blackmice_white-chenlab-2022-06-27\exported-models\DLC_cageview_v3_blackmice_white_mobilenet_v2_1.0_iteration-0_shuffle-1',
                             'whitewhite': r'Z:\Projects\Homecage\DLC\VAModels\DLC\cageview\whitewhite\cageview_v3_whitemice_white-chenlab-2022-06-27\exported-models\DLC_cageview_v3_whitemice_white_mobilenet_v2_1.0_iteration-0_shuffle-1',
-                            'blackred': r'Z:\Projects\Homecage\DLC\VAModels\DLC\cageview\whitewhite\cageview_v3_whitemice_white-chenlab-2022-06-27\exported-models\DLC_cageview_v3_whitemice_white_mobilenet_v2_1.0_iteration-0_shuffle-1',
-                            'whitered':  r'Z:\Projects\Homecage\DLC\VAModels\DLC\cageview\whitewhite\cageview_v3_whitemice_white-chenlab-2022-06-27\exported-models\DLC_cageview_v3_whitemice_white_mobilenet_v2_1.0_iteration-0_shuffle-1',
+                            'blackred': r'Z:\Projects\Homecage\DLC\VAModels\DLC\cageview\blackred\cageview_v3_blackmice_red-chenlab-2022-06-27\exported-models\DLC_cageview_v3_blackmice_red_mobilenet_v2_1.0_iteration-0_shuffle-1',
+                            'whitered':  r'Z:\Projects\Homecage\DLC\VAModels\DLC\cageview\whitered\cageview_v3_whitemice_red-chenlab-2022-06-27\exported-models\DLC_cageview_v3_whitemice_red_mobilenet_v2_1.0_iteration-0_shuffle-1',
                             },
                         'body_parts': ['nose', 'head', 'neck', 'upperback', 'lowerback', 'tail', 'tail2']
 
