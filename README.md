@@ -1,5 +1,5 @@
 # Homecage Video Analysis
-Using DeepLabCut to precisely track user-defined features of mice as they perform a whisker-based task in a Chen Lab home cage system.
+Using [DeepLabCut](https://github.com/DeepLabCut/DeepLabCut) to precisely track user-defined features of mice as they perform a whisker-based task in a Chen Lab home cage system.
 
 <img src="https://github.com/kevry/HomecageVideoAnalysis/assets/45439265/c2455d7d-cdef-438e-9cc1-256ffa74e7c8" width="300"/>
 
