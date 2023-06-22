@@ -1,12 +1,11 @@
 # Homecage Video Analysis
 Using [DeepLabCut](https://github.com/DeepLabCut/DeepLabCut) to precisely track user-defined features of mice as they perform a whisker-based task in a Chen Lab home cage system.
 
-<img src="https://github.com/kevry/HomecageVideoAnalysis/assets/45439265/c2455d7d-cdef-438e-9cc1-256ffa74e7c8" width="300"/>
+<img src="https://github.com/common-chenlab/HomecageVideoAnalysis/assets/86018372/4f6c3b93-91b9-453c-a834-b371171a9af0" width="300"/>
 
-<img src="https://github.com/kevry/HomecageVideoAnalysis/assets/45439265/a96640ca-1950-4cc6-a994-8ebe4b33098f" width="157"/>
+<img src="https://github.com/common-chenlab/HomecageVideoAnalysis/assets/86018372/387e9762-05f5-46a9-915e-4874218f06e2" width="157"/>
 
-<img src="https://github.com/kevry/HomecageVideoAnalysis/assets/45439265/97efb6e7-2fa9-4cdc-95ae-49d0fb94aa7d" width="300"/>
-
+<img src="https://github.com/common-chenlab/HomecageVideoAnalysis/assets/86018372/7479c640-9195-4160-bc14-bfc2640aaba6" width="300"/>
 
 ## How to Use
 You can either clone this repository to your SCC home directory or you can directly use it from the ChenLab Z drive path `/net/claustrum/mnt/data/Projects/Homecage/VideoAnalysisSCC_V2`
