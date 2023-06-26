@@ -175,7 +175,7 @@ class TrainingModuleAnalysis():
 
         if self.padding_for_aspect_ratio[0] == 'y': 
             frame = cv2.copyMakeBorder(frame, self.padding_for_aspect_ratio[1],0,0,0,cv2.BORDER_CONSTANT) # height padding
-        elif self.padding_for_aspect_ratio[0] == 'x': :
+        elif self.padding_for_aspect_ratio[0] == 'x':
             frame = cv2.copyMakeBorder(frame, 0,0,0,self.padding_for_aspect_ratio[1],cv2.BORDER_CONSTANT) # width padding
 
         # Mouse pose DLC model was trained on 400x300 dim frames

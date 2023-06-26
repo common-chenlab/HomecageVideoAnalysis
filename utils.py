@@ -5,12 +5,42 @@ import shutil
 import os
 import traceback
 import time
-
 from paths import folder_paths, sensitive_information_folder
-sys.path.append(utils.ospath(path = sensitive_information_folder))
+
+# utils code requres path to sensitive_information_folder but ospath requires sensitive info. Deadlock. #TODO: fix later .. temp fix here
+def ospathTEMP(path): 
+	""" modify file path depending on the current OS in use.
+	this code will sometimes run on Windows environment or SCC(linux) """
+
+	# create hash table of letter network drives and SCC mounted paths
+	map2scc = {'Z:': '/net/claustrum/mnt/data', 'Y:': '/net/claustrum/mnt/data1',
+		'X:': '/net/claustrum2/mnt/data','W:': '/net/clasutrm3/mnt/data', 
+	}
+	map2win = {'/net/claustrum/mnt/data': 'Z:', '/net/claustrum/mnt/data1': 'Y:',
+		'/net/claustrum2/mnt/data': 'X:','/net/clasutrm3/mnt/data': 'W:', 
+	}
+	
+	if sys.platform == 'linux':
+		for key in map2scc:
+			if key in path:
+				path = path.replace(key, map2scc[key])
+				break
+		# reverse backslash		
+		path = path.replace('\\', '/')
+	else:
+		# running on windows
+		for key in map2win:
+			if key in path:
+				path = path.replace(key, map2win[key])
+				break
+		path = path.replace('/', '\\')
+	return path
+
+sys.path.append(ospathTEMP(path = sensitive_information_folder))
 from sensitive_info import BLUE_IRIS_COMPUTER_IP
 
-""" utility functions """
+
+""" utility functions for video analysis """
 
 def ospath(path):
 	""" modify file path depending on the current OS in use.
@@ -248,9 +278,9 @@ def resize_cropped_frame(position, max_width, max_height, aspect_ratio):
 		add_padding = ['y', add_padding_h]
 	else:
 		new_width = int(round(aspect_ratio * h))
-        add_padding_w = new_width - w
-        w = new_width
-        add_padding = ['x', add_padding_w]
+		add_padding_w = new_width - w
+		w = new_width
+		add_padding = ['x', add_padding_w]
 	return add_padding
 
 

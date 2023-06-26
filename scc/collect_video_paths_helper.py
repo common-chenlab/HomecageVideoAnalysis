@@ -3,8 +3,9 @@ import json
 import os
 import subprocess
 import sys
-import utils
 
+sys.path.append('../')
+import utils
 
 
 def get_args():
@@ -66,10 +67,10 @@ if __name__ == "__main__":
     # save list to JSON file
     # note: file is always saved as videolist.json
     json_obj = json.dumps(video_list_chunked)
-    json_file_name = 'video_file_list_{}.json'.format(str(batch_size))
-    with open(json_file_name, "w") as outfile:
+    json_file_path = 'jsons/video_file_list_{}.json'.format(str(batch_size))
+    with open(json_file_path, "w") as outfile:
         outfile.write(json_obj)
-    print("{} created.".format(json_file_name))
+    print("{} created.".format(json_file_path))
 
     num_of_jobs = len(video_list_chunked)
 
@@ -87,6 +88,6 @@ if __name__ == "__main__":
         "-o", log_folder,
         "-e", log_folder,
         "training_module_job.sh", 
-        json_file_name, 
+        json_file_path, 
         "task_array"
     ])
