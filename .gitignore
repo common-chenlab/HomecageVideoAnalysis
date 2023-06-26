@@ -3,9 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# sensitive information file
+# possible sensitive information file names
 sensitive_info.py
 sensitive.py
+
+# log files generated from scc
+scc/log/
 
 # C extensions
 *.so
