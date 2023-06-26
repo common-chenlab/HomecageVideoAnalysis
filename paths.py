@@ -71,11 +71,5 @@ modelinfo['objdetectLED'] = {
                                 'trained_image_size': (416, 416),
                                 'channels': 1
                             }
-# # path to training module object detection model
-# modelinfo['objdetectTM'] = {
-#                                 'model_folder_path': r'Z:\Projects\Homecage\DLC\VAModels\ObjectDetection\trainingmodule\latest_10192022',
-#                                 'weights': 'yolov3_training.weights',
-#                                 'config': 'yolov3_training.cfg',
-#                                 'trained_image_size': (416, 416),
-#                                 'channels': 1
-#                             }
+
+sensitive_information_folder = r'Z:\Projects\Homecage\DLC\SensitiveInformation'

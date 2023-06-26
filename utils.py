@@ -5,7 +5,9 @@ import shutil
 import os
 import traceback
 import time
-from paths import folder_paths
+
+from paths import folder_paths, sensitive_information_folder
+sys.path.append(utils.ospath(path = sensitive_information_folder))
 from sensitive_info import BLUE_IRIS_COMPUTER_IP
 
 """ utility functions """

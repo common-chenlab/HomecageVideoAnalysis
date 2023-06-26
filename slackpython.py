@@ -1,6 +1,10 @@
 import requests
 import json
 import sys
+
+import utils
+from paths import sensitive_information_folder
+sys.path.append(utils.ospath(path = sensitive_information_folder))
 from sensitive_info import SLACK_CHENLAB_URL
 
 """ Send SLACK notifications to specific channels on python """

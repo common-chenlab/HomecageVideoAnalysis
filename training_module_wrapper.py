@@ -12,7 +12,7 @@ from paths import folder_paths, modelinfo
 from training_module_analysis import TrainingModuleAnalysis
 from models.timestamp_ocr import TimestampOCR
 from models.detect_tm_anchor_pts import DetectTMAnchorPts
-from model.cloast_classifier import CoatClassifier
+from models.coat_classifier import CoatClassifier
 from slackpython import SendSlackNotification
 
 
