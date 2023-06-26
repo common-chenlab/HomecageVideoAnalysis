@@ -15,7 +15,7 @@
 #path to directory with video files
 video_folder_path=$1
 
-# shift input arguments
+#shift input arguments
 shift
 
 #list of rigs to run anaylsis on in video. set first element in bash array to "all" if plan to run entire directory
