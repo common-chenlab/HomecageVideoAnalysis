@@ -10,6 +10,9 @@ sensitive.py
 # log files generated from scc
 scc/log/
 
+# any JSON files created
+*.json
+
 # C extensions
 *.so
 
