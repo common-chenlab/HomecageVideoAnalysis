@@ -13,6 +13,7 @@ from training_module_analysis import TrainingModuleAnalysis
 from models.timestamp_ocr import TimestampOCR
 from models.detect_tm_anchor_pts import DetectTMAnchorPts
 from models.coat_classifier import CoatClassifier
+from models.detect_mouse_pose import DetectMousePose
 from slackpython import SendSlackNotification
 
 

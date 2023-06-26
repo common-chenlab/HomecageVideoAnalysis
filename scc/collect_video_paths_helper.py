@@ -67,7 +67,7 @@ if __name__ == "__main__":
     # save list to JSON file
     # note: file is always saved as videolist.json
     json_obj = json.dumps(video_list_chunked)
-    json_file_path = 'jsons/video_file_list_{}.json'.format(str(batch_size))
+    json_file_path = os.path.join(os.getcwd(), 'jsons','video_file_list_{}.json'.format(str(batch_size)))
     with open(json_file_path, "w") as outfile:
         outfile.write(json_obj)
     print("{} created.".format(json_file_path))

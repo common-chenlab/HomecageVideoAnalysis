@@ -273,7 +273,7 @@ def resize_cropped_frame(position, max_width, max_height, aspect_ratio):
 	
 	# if new_height given preferred aspect ratio is greater than original height
 	if new_height >= h and (y+new_height) < max_height:
-		add_padding_h - new_height - h
+		add_padding_h = new_height - h
 		h = new_height
 		add_padding = ['y', add_padding_h]
 	else:

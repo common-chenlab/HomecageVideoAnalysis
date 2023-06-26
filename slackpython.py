@@ -11,7 +11,7 @@ from sensitive_info import SLACK_CHENLAB_URL
 # Date Created: 01/04/2022
 
 # SLACK workspace URL ChenLab
-url = SLACK_URL_CHENLAB
+url = SLACK_CHENLAB_URL
 
 
 def SendSlackNotification(message = None, channel = None):
