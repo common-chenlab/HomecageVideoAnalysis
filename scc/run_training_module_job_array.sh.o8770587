@@ -1,9 +1,0 @@
-Your job-array 8772443.1-828:1 ("training_module_job.sh") has been submitted
-video_folder_path=/net/128.197.48.147/video-data/New/Other/TrainingModuleM2
-rig_num_list=['all']
-Reading files from directory ...
-Number of files in entire folder: 8279
-Using full directory ...
-/net/claustrum/mnt/data/Projects/Homecage/DLC/HomecageVideoAnalysis/scc/jsons/video_file_list_10.json created.
-Number of video paths in json: 8279
-Number of chunks with batch_size=10: 828
