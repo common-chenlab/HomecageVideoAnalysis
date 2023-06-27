@@ -23,9 +23,9 @@ slptime=$(echo "scale=4 ; ($RANDOM/32768) * 10" | bc)
 sleep $slptime
 
 if [ $2 = "task_array" ]; then
-	task_array="0 "
-else
 	task_array="1"
+else
+	task_array="0"
 fi
 
 #run main python script
