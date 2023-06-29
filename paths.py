@@ -57,7 +57,7 @@ modelinfo['coatrecognition'] = r'Z:\Projects\Homecage\DLC\VAModels\ImageClassifi
 
 # # path to maskrcnn training module model
 # modelinfo['maskrcnntm'] = r'Z:\Projects\Homecage\DLC\VAModels\Segmentation\trainingmodule\tm_detect_03282022.h5'
-modelinfo['tmdetection'] = r'Z:\Projects\Homecage\DLC\VAModels\DLC\tm-outline-chenlab-2023-02-11\exported-models\DLC_tm-outline_mobilenet_v2_0.35_iteration-0_shuffle-1'
+modelinfo['tmdetection'] = r'Z:\Projects\Homecage\DLC\VAModels\DLC\tm-outline\tm-outline_mobilenet_v2_1.0_VERSION_2'
 
 # path to maskrcnn cage view model
 modelinfo['maskrcnncv'] = r'Z:\Projects\Homecage\DLC\VAModels\Segmentation\cageview\mask_rcnn_cage_ls_06132022.h5'
