@@ -15,7 +15,7 @@ Using [DeepLabCut](https://github.com/DeepLabCut/DeepLabCut) to precisely track 
 </p>
 
 ## How to Use
-You can either clone this repository to your SCC home directory or you can directly use it from the ChenLab Z drive path `/net/claustrum/mnt/data/Projects/Homecage/VideoAnalysisSCC_V2`
+You can either clone this repository to your SCC home directory or you can directly use it from the ChenLab Z drive path `/net/claustrum/mnt/data/Projects/Homecage/HomecageVideoAnalysisCopy`
 
 ### Step 1: Setting up your SCC account
 Video analysis of the training module view is run using the [Shared Computing Cluster(SCC)](https://www.bu.edu/tech/support/research/computing-resources/scc/). To make sure you have an accessible SCC account, log on to the [SCC dashboard](https://scc-ondemand2.bu.edu/pun/sys/dashboard) using your BU Kerberos email and password. If you were able to log in with no issues, you can move on to the next step. Otherwise, contact Jerry Chen, to add your BU account to the SCC lab project.
