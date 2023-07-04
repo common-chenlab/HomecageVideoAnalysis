@@ -14,10 +14,12 @@ def ospathTEMP(path):
 
 	# create hash table of letter network drives and SCC mounted paths
 	map2scc = {'Z:': '/net/claustrum/mnt/data', 'Y:': '/net/claustrum/mnt/data1',
-		'X:': '/net/claustrum2/mnt/data','W:': '/net/clasutrm3/mnt/data', 
+		'X:': '/net/claustrum2/mnt/data','W:': '/net/clasutrum3/mnt/data', 
+		'V:': '/net/claustrum4/mnt/storage/data',
 	}
 	map2win = {'/net/claustrum/mnt/data': 'Z:', '/net/claustrum/mnt/data1': 'Y:',
-		'/net/claustrum2/mnt/data': 'X:','/net/clasutrm3/mnt/data': 'W:', 
+		'/net/claustrum2/mnt/data': 'X:','/net/clasutrum3/mnt/data': 'W:', 
+		'/net/claustrum4/mnt/storage/data': 'V:',
 	}
 	
 	if sys.platform == 'linux':
@@ -51,7 +53,8 @@ def ospath(path):
 		'Z:': '/net/claustrum/mnt/data', 
 		'Y:': '/net/claustrum/mnt/data1',
 		'X:': '/net/claustrum2/mnt/data',
-		'W:': '/net/clasutrm3/mnt/data', 
+		'W:': '/net/clasutrum3/mnt/data', 
+		'V:': '/net/claustrum4/mnt/storage/data',
 		'N:\\BlueIris': '/net/{}/video-data'.format(BLUE_IRIS_COMPUTER_IP)
 	}
 
@@ -59,7 +62,8 @@ def ospath(path):
 		'/net/claustrum/mnt/data': 'Z:', 
 		'/net/claustrum/mnt/data1': 'Y:',
 		'/net/claustrum2/mnt/data': 'X:',
-		'/net/clasutrm3/mnt/data': 'W:', 
+		'/net/clasutrum3/mnt/data': 'W:', 
+		'/net/claustrum4/mnt/storage/data': 'V:',
 		'/net/{}/video-data'.format(BLUE_IRIS_COMPUTER_IP): 'N:\\BlueIris'
 	}
 
