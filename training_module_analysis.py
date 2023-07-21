@@ -334,6 +334,7 @@ class TrainingModuleAnalysis():
         # initialize trial
         init_successful = False
         for i in range(len(BATCH_OF_FRAMES)):
+            #time.sleep(0.1)
             frame, frame_idx = BATCH_OF_FRAMES[i]
             status_code = self.init_trial_data(frame=frame, frame_idx=frame_idx)
             if status_code == 0: # success
@@ -353,6 +354,7 @@ class TrainingModuleAnalysis():
 
         # OCR inference 
         for i in range(init_idx, len(BATCH_OF_FRAMES)):
+            #time.sleep(0.1)
             frame, frame_idx = BATCH_OF_FRAMES[i]
             ocr_predicted = self.ocr.run_inference(frame = frame.copy()) # run OCR
             if ocr_predicted == -1: # use previous timestamp if ocr is blank in frame
@@ -366,6 +368,7 @@ class TrainingModuleAnalysis():
         # DLC inference
         prev_dlc_frame, _ = BATCH_OF_FRAMES[init_idx]
         for i in range(init_idx, len(BATCH_OF_FRAMES)):
+            #time.sleep(0.1)
             frame, frame_idx = BATCH_OF_FRAMES[i]
             # run DLC: use previous frames dlc results if frame difference is less than 5 pixels (mouse hasn't moved or TM is empty)
             dlcmarkers = self.TRIALDATA['dlcdata'][-1] if ((cv2.absdiff(frame[:,:,0], prev_dlc_frame[:,:,0]).sum() < 5) and (i != init_idx)) else self.run_dlc(frame = frame.copy())
@@ -402,6 +405,7 @@ class TrainingModuleAnalysis():
             ret, frame = self.cap.read()
 
             if ret:
+                #time.sleep(.005)
                 self.frame_idx += 1
 
                 # check if camera view is stable while no trial is occuring
@@ -409,9 +413,10 @@ class TrainingModuleAnalysis():
                     is_camera_unstable = self.camera_view_unstable(frame = frame)
                     if is_camera_unstable == True:
                         continue
+                    #time.sleep(0.005)
 
                 # process raw frame
-                rgbframe = self.process_frame(frame = frame)
+                rgbframe = self.process_frame(frame = frame.copy())
 
                 # get status of led
                 led_status = led_status_check(frame = rgbframe.copy(), led_position = self.led_position)
