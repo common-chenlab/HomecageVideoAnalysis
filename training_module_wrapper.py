@@ -8,21 +8,6 @@ import shutil
 import time
 import gc
 
-# os.environ["OMP_NUM_THREADS"] = "1"
-# os.environ["TF_NUM_INTRAOP_THREADS"] = "1"
-# os.environ["TF_NUM_INTEROP_THREADS"] = "1"
-# import tensorflow as tf
-
-
-# tf.config.threading.set_inter_op_parallelism_threads(
-#     1
-# )
-# tf.config.threading.set_intra_op_parallelism_threads(
-#     1
-# )
-# tf.config.set_soft_device_placement(True)
-
-
 from paths import folder_paths, modelinfo
 from training_module_analysis import TrainingModuleAnalysis
 from models.timestamp_ocr import TimestampOCR
