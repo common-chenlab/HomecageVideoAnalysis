@@ -4,7 +4,7 @@ import glob
 import json
 import shutil
 import time
-s
+
 # NOTE: Only run on local Windows machine that has BlueIris installed
 
 """ Video analysis may fail sometimes due to glitches when converting from BVR to MP4 using ffmpeg.
