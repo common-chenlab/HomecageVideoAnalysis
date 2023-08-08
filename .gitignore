@@ -14,6 +14,8 @@ scc/log/
 *.sh.e*
 
 # any JSON files created
+scc/jsons/*.json
+tools/*.json
 *.json
 
 # C extensions
