@@ -21,6 +21,9 @@ shift
 #list of rigs to run anaylsis on in video. set first element in bash array to "all" if plan to run entire directory
 rig_num_list=$@
 
-module load python3
+#activate conda environment
+module load miniconda
+conda activate VideoAnalysisENV
+
 python collect_video_paths_helper.py --video_folder_path $video_folder_path --rig_list $rig_num_list
 exit
