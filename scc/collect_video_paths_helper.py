@@ -61,10 +61,14 @@ if __name__ == "__main__":
         print("Using full directory ...")
         video_path_list = complete_video_path_list
     del complete_video_path_list
+    
+    num_of_videos = len(video_path_list)
 
     # separate list of videos in chunks
     video_list_chunked = [video_path_list[i*batch_size:(i+1)*batch_size] for i in range((len(video_path_list)+batch_size-1)//batch_size)]
 
+    num_of_jobs = len(video_list_chunked)
+    
     # save list to JSON file
     # note: file is always saved as videolist.json
     json_obj = json.dumps(video_list_chunked)
@@ -73,16 +77,14 @@ if __name__ == "__main__":
     json_folder = os.path.join(os.getcwd(), "jsons")
     os.makedirs(json_folder, exist_ok=True)
 
-    # create json file name 
-    # TODO: make this more customizable, adding timestamp, rig numbers in json for more details on the video paths ...
-    json_file_name = 'video_file_list_{}.json'.format(str(batch_size))
+    # create json file name (n = number of videos, b = number of batches, and datetime of run)
+    json_file_name = 'video_list_{}n_{}b_{}.json'.format(str(num_of_videos), str(num_of_jobs), 
+                                                         datetime.datetime.now().strftime('%m%d%Y%H%M%S'))
 
     json_file_path = os.path.join(json_folder, json_file_name)
     with open(json_file_path, "w") as outfile:
         outfile.write(json_obj)
     print("{} created.".format(json_file_path))
-
-    num_of_jobs = len(video_list_chunked)
 
     # number of paths in json
     print('Number of video paths in json:', len(video_path_list))
