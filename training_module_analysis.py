@@ -1,3 +1,4 @@
+from chenlabpylib import chenlab_filepaths
 import cv2
 import datetime
 import numpy as np
@@ -36,10 +37,10 @@ class TrainingModuleAnalysis():
         self.body_parts = modelinfo['dlctm']['body_parts']
 
         # path to save mat files
-        self.mat_folder = utils.ospath(path = folder_paths['matfiletm'])
+        self.mat_folder = chenlab_filepaths(path = folder_paths['matfiletm'])
 
         # path to error folder
-        self.error_folder = utils.ospath(path = folder_paths['errortm'])
+        self.error_folder = chenlab_filepaths(path = folder_paths['errortm'])
 
         # deeplabcut models
         self.mouseposemodels = mouseposemodels

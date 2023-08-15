@@ -1,11 +1,10 @@
 import sys
-import cv2
 import numpy as np
 import os
+from chenlabpylib import chenlab_filepaths
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from dlclive.dlclive import DLCLive
-import utils
 
 
 class DetectMousePose():
@@ -16,7 +15,7 @@ class DetectMousePose():
          # initialize DLCLive
         self.dlcmodels = {}
         for key in model_paths:
-            self.dlcmodels[key] = DLCLive(utils.ospath(path = model_paths[key]), display = False)
+            self.dlcmodels[key] = DLCLive(chenlab_filepaths(path = model_paths[key]), display = False)
             self.dlcmodels[key].init_inference()
         print("Successfully initialized DeepLabCut model(s)")
 

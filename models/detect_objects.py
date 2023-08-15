@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import os
 from paths import modelinfo
-import utils
+from chenlabpylib import chenlab_filepaths
 
 """ Object Detection used for video analysis
 As of 01/12/2021, we are able to detect
@@ -26,7 +26,7 @@ def get_object_location(img, class_label, confidence_thresh = 0.8, verbose = Fal
 	# get model information
 	model_info = modelinfo['objdetect' + class_label]
 
-	model_folder = utils.ospath(path = model_info['model_folder_path'])
+	model_folder = chenlab_filepaths(path = model_info['model_folder_path'])
 	trained_image_size = model_info['trained_image_size']
 	channels = model_info['channels']
 	weights_filename = model_info['weights']
