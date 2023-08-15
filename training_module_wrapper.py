@@ -4,17 +4,14 @@ import sys
 import json
 import traceback
 import utils
-import shutil
-import time
 import gc
-
-from paths import folder_paths, modelinfo
+from paths import modelinfo
 from training_module_analysis import TrainingModuleAnalysis
 from models.timestamp_ocr import TimestampOCR
 from models.detect_tm_anchor_pts import DetectTMAnchorPts
 from models.coat_classifier import CoatClassifier
 from models.detect_mouse_pose import DetectMousePose
-from slackpython import SendSlackNotification
+from chenlabpylib import chenlab_filepaths, send_slack_notification
 
 
 def get_args():
@@ -45,7 +42,7 @@ if __name__ == '__main__':
     else:
         video_path_list = data[0]
 
-    # update video paths based on current operating system
+    # update video paths w/ modified chenlab_filepaths function
     video_path_list = [utils.ospath(path = video_path) for video_path in video_path_list]
 
     # move video files to scratch folder if on scc
@@ -53,13 +50,13 @@ if __name__ == '__main__':
         video_path_list = utils.move_videos_2_scc_scratch(video_path_list = video_path_list)
 
     # initialize mouse coat recognition model
-    mousecoatrecognition = CoatClassifier(model_path = utils.ospath(path = modelinfo['coatrecognition']))
+    mousecoatrecognition = CoatClassifier(model_path = chenlab_filepaths(path = modelinfo['coatrecognition']))
 
     # training module DLC model
-    tmdetectionmodel = DetectTMAnchorPts(model_path = utils.ospath(modelinfo['tmdetection']))
+    tmdetectionmodel = DetectTMAnchorPts(model_path = chenlab_filepaths(modelinfo['tmdetection']))
 
     # initialize tesserocr (optical character recognition) model
-    ocr = TimestampOCR(camera_view = 'TM', model_path = utils.ospath(path = modelinfo['ocr']))
+    ocr = TimestampOCR(camera_view = 'TM', model_path = chenlab_filepaths(path = modelinfo['ocr']))
 
     # mouse DLC models
     mouseposemodels = DetectMousePose(model_paths = modelinfo['dlctm']['model_paths'])
@@ -81,6 +78,8 @@ if __name__ == '__main__':
             else:
                 print("Error during initialization of video analysis for {}".format(os.path.basename(video_path)))
                 traceback.print_exc()
+                
+            # send_slack_notification("VIDEOANALYSIS: Error w/ {}".format(os.path.basename(video_path)))
         gc.collect()
 
     print("Complete.")
