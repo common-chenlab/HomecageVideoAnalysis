@@ -5,85 +5,38 @@ import shutil
 import os
 import traceback
 import time
+from chenlabpylib import chenlab_filepaths
 from paths import folder_paths, sensitive_information_folder
 
-# utils code requres path to sensitive_information_folder but ospath requires sensitive info. Deadlock. #TODO: fix later .. temp fix here
-def ospathTEMP(path): 
-	""" modify file path depending on the current OS in use.
-	this code will sometimes run on Windows environment or SCC(linux) """
-
-	# create hash table of letter network drives and SCC mounted paths
-	map2scc = {'Z:': '/net/claustrum/mnt/data', 'Y:': '/net/claustrum/mnt/data1',
-		'X:': '/net/claustrum2/mnt/data','W:': '/net/clasutrum3/mnt/data', 
-		'V:': '/net/claustrum4/mnt/storage/data',
-	}
-	map2win = {'/net/claustrum/mnt/data': 'Z:', '/net/claustrum/mnt/data1': 'Y:',
-		'/net/claustrum2/mnt/data': 'X:','/net/clasutrum3/mnt/data': 'W:', 
-		'/net/claustrum4/mnt/storage/data': 'V:',
-	}
-	
-	if sys.platform == 'linux':
-		for key in map2scc:
-			if key in path:
-				path = path.replace(key, map2scc[key])
-				break
-		# reverse backslash		
-		path = path.replace('\\', '/')
-	else:
-		# running on windows
-		for key in map2win:
-			if key in path:
-				path = path.replace(key, map2win[key])
-				break
-		path = path.replace('/', '\\')
-	return path
-
-sys.path.append(ospathTEMP(path = sensitive_information_folder))
+sys.path.append(chenlab_filepaths(path = sensitive_information_folder))
 from sensitive_info import BLUE_IRIS_COMPUTER_IP
 
 
 """ utility functions for video analysis """
 
 def ospath(path):
-	""" modify file path depending on the current OS in use.
-	this code will sometimes run on Windows environment or SCC(linux) """
-
-	# create hash table of letter network drives and SCC mounted paths
-	map2scc = {
-		'Z:': '/net/claustrum/mnt/data', 
-		'Y:': '/net/claustrum/mnt/data1',
-		'X:': '/net/claustrum2/mnt/data',
-		'W:': '/net/clasutrum3/mnt/data', 
-		'V:': '/net/claustrum4/mnt/storage/data',
-		'N:\\BlueIris': '/net/{}/video-data'.format(BLUE_IRIS_COMPUTER_IP)
-	}
-
-	map2win = {
-		'/net/claustrum/mnt/data': 'Z:', 
-		'/net/claustrum/mnt/data1': 'Y:',
-		'/net/claustrum2/mnt/data': 'X:',
-		'/net/clasutrum3/mnt/data': 'W:', 
-		'/net/claustrum4/mnt/storage/data': 'V:',
-		'/net/{}/video-data'.format(BLUE_IRIS_COMPUTER_IP): 'N:\\BlueIris'
-	}
-
-	# running on linux
-	if sys.platform == 'linux':
-		for key in map2scc:
-			if key in path:
-				path = path.replace(key, map2scc[key])
-				break
-		# reverse backslash		
-		path = path.replace('\\', '/')
-	else:
-		# running on windows
-		for key in map2win:
-			if key in path:
-				path = path.replace(key, map2win[key])
-				break
-		path = path.replace('/', '\\')
-
-	return path
+    """ create_modified version of chenlab_filepaths from chenlabpylib. Some video paths might contain IP addresses which cannot be public to repo"""
+    
+    # create hash table of letter network drives and SCC mounted paths
+    if BLUE_IRIS_COMPUTER_IP in path:
+        if '/net/{}/video-data'.format(BLUE_IRIS_COMPUTER_IP) in path:
+            path = path.replace('/net/{}/video-data'.format(BLUE_IRIS_COMPUTER_IP), 'N:\\BlueIris')
+        elif 'N:\\BlueIris' in path:
+            path = path.replace('N:\\BlueIris', '/net/{}/video-data'.format(BLUE_IRIS_COMPUTER_IP))
+        else:
+            return path
+             
+        # running on linux
+        if sys.platform == 'linux':	
+            path = path.replace('\\', '/')
+        else: # running on Windows
+            path = path.replace('/', '\\')
+             
+        return path
+        
+    else: # use general chenlab_filepaths
+        return chenlab_filepaths(path=path)
+    
 
 
 def move_videos_2_scc_scratch(video_path_list):
@@ -148,9 +101,9 @@ def create_mat_subfolder(videofilename, training_module_id, camera_view, videoda
 	""" create path to mat subfolder to save .MAT files"""
 
 	if camera_view == 'CV':
-		mat_folder_path = ospath(path = folder_paths['matfilecv'])
+		mat_folder_path = chenlab_filepaths(path = folder_paths['matfilecv'])
 	elif camera_view == 'TM':
-		mat_folder_path = ospath(path = folder_paths['matfiletm'])
+		mat_folder_path = chenlab_filepaths(path = folder_paths['matfiletm'])
 	else:
 		raise ValueError("camera_view is neither TM or CV.")
 
