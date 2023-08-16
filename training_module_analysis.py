@@ -518,7 +518,7 @@ class TrainingModuleAnalysis():
                     else:
                         prev_ocr_predicted = ocr_predicted
                         # TODO: Improve - Brute force linear search through all timestamps
-                        for trial_data in trial_data_list:
+                        for trial_data in filtered_trial_data_list:
                             trial_dt = datetime.datetime.strptime(trial_data[0][:-4], "%Y-%m-%d %H:%M:%S")
                             if ocr_predicted == trial_dt:
                                 # number of frames to run analysis on (record_time is in ms, convert to s)
