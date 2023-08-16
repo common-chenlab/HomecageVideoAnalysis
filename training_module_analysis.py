@@ -495,6 +495,9 @@ class TrainingModuleAnalysis():
         # previous frames timestamp
         prev_ocr_predicted = None
         
+        # initialize start time
+        start_time = time.time()
+        
         while True:
             ret, frame = self.cap.read()
 
@@ -521,8 +524,8 @@ class TrainingModuleAnalysis():
                         for trial_data in filtered_trial_data_list:
                             trial_dt = datetime.datetime.strptime(trial_data[0][:-4], "%Y-%m-%d %H:%M:%S")
                             if ocr_predicted == trial_dt:
-                                # number of frames to run analysis on (record_time is in ms, convert to s)
-                                recording_time_sec = int(trial_data[2]) / 1000
+                                # number of frames to run analysis on (record_time = lenght of time in ms led is on)
+                                recording_time_sec = int(trial_data[2]) / 1000.0 # convert to sec
                                 num_of_frames_for_trial = math.ceil(recording_time_sec * self.fps) # get num of frames (round up always)
                                 trial_match = True
                                 BATCH_OF_FRAMES = []
@@ -540,6 +543,16 @@ class TrainingModuleAnalysis():
                     trial_match = False
                         
             else:
+                if len(BATCH_OF_FRAMES) > 0 and trial_match: # video ends before trial (edge_case = 1)
+                    self.run_analysis(BATCH_OF_FRAMES, edge_case = 1)
+                    BATCH_OF_FRAMES = []
+                    trial_match = False
+
+                # end time of analysis
+                total_time = str(datetime.timedelta(seconds = int(time.time() - start_time))) 
+                print('Elapsed time:', total_time)
+                print('DLC time', self.dlc_total_time)
+                self.close()
                 break
 
 
