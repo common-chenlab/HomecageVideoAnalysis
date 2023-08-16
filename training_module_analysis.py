@@ -257,7 +257,7 @@ class TrainingModuleAnalysis():
         print('--- START OF NEW TRIAL ---')
         print('mouse coat predicted as {} with confidence {}'.format(
             self.TRIALDATA['mousecoatcolor']['prediction'], 
-            round(self.TRIALDATA['mousecoatcolor']['confidence']), 4)
+            round(self.TRIALDATA['mousecoatcolor']['confidence'], 4))
         )
         print('initial trial datetime:', self.TRIALDATA['trial_datetime'])
         print('frame-idx={}'.format(self.frame_idx))
