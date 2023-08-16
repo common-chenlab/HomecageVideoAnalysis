@@ -11,7 +11,7 @@ import time
 import traceback
 import utils
 
-from paths import folder_paths, modelinfo
+from paths import folder_paths, modelinfo, led_issue_info
 from models.led_tracker import led_status_check, led_movement_check
 from models.detect_objects import get_object_location
 
@@ -74,6 +74,15 @@ class TrainingModuleAnalysis():
 
         # get camera detials
         self.training_module_id = file_info['rig_no'] # ex: (1, 2, 3, 4, 5, 6, 7, ... )
+        
+        # use csv file with trial datetimes instead of relying the LED
+        if self.training_module_id in led_issue_info['rig_led_issues']:
+            self.rig_trial_dt_csv_path = chenlab_filepaths(path=led_issue_info['led_issue_csv_paths'][self.training_module_id])
+            self.use_trial_csv = True
+        else:
+            self.rig_trial_dt_csv_path = None
+            self.use_trial_csv = False
+            
         self.camera_view = file_info['camera_view'] # camera view = enum("TM", "CV")
         self.videodatetime = file_info['datetime']
         self.CAMERA_NAME = self.camera_view + "_" + str(self.training_module_id) # CAMERA_NAME EX: TM_1, TM_2 ...
