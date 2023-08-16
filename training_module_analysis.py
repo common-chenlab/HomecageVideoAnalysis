@@ -1,8 +1,10 @@
 from chenlabpylib import chenlab_filepaths
 import cv2
 import datetime
+import math
 import numpy as np
 import os
+import pandas as pd
 from scipy.io import savemat
 import shutil
 import sys
@@ -395,9 +397,14 @@ class TrainingModuleAnalysis():
 
     def run(self):
         """ run through entire video """
-
+        
         # retrieve initial video data
         self.init_video_data()
+        
+        # use trial file for runnning analysis instead of relying on LED
+        if self.use_trial_csv:
+            self.run_with_trial_file()
+            return
 
         # initialize start time
         start_time = time.time()
@@ -457,6 +464,82 @@ class TrainingModuleAnalysis():
                 print('Elapsed time:', total_time)
                 print('DLC time', self.dlc_total_time)
                 self.close()
+                break
+            
+            
+    def run_with_trial_file(self):
+        """ run through entire video using csv file with trial data """
+        
+        # read csv file for trial data 
+        # column names ["trial_datetime", "session_datetime", "report_time", "direction_1", "direction_2"]
+        df_trial_data = pd.read_csv(self.rig_trial_dt_csv_path, header=0)
+        trial_data_list = df_trial_data.values.tolist()
+        
+        # subsample and get +-1 hour range of trial timestamps
+        min_search_dt, max_search_dt = self.videodatetime - datetime.timedelta(hours=1), self.videodatetime + datetime.timedelta(hours=2)
+        filtered_trial_data_list = []
+        for trial_data in trial_data_list:
+            trial_dt = datetime.datetime.strptime(trial_data[0][:-4], "%Y-%m-%d %H:%M:%S")
+            if min_search_dt <= trial_dt <= max_search_dt:
+                filtered_trial_data_list.append(trial_data)
+        
+        # sort list by datetime in ascending order
+        filtered_trial_data_list = sorted(filtered_trial_data_list, key=lambda x: x[0])
+        
+        # if trial was found
+        trial_match = False
+        
+        # batch of frames
+        BATCH_OF_FRAMES = []
+        
+        # previous frames timestamp
+        prev_ocr_predicted = None
+        
+        while True:
+            ret, frame = self.cap.read()
+
+            if ret:
+                self.frame_idx += 1
+                
+                # process raw frame
+                rgbframe = self.process_frame(frame = frame.copy())
+                
+                # run OCR
+                ocr_predicted = self.ocr.run_inference(frame = rgbframe.copy()) 
+                
+                # skip if ocr is invalid
+                if ocr_predicted == -1:
+                    continue
+            
+                if trial_match == False:
+                    if prev_ocr_predicted == ocr_predicted:
+                        # no need to search if timestamp is the same
+                        pass
+                    else:
+                        prev_ocr_predicted = ocr_predicted
+                        # TODO: Improve - Brute force linear search through all timestamps
+                        for trial_data in trial_data_list:
+                            trial_dt = datetime.datetime.strptime(trial_data[0][:-4], "%Y-%m-%d %H:%M:%S")
+                            if ocr_predicted == trial_dt:
+                                # number of frames to run analysis on (record_time is in ms, convert to s)
+                                recording_time_sec = int(trial_data[2]) / 1000
+                                num_of_frames_for_trial = math.ceil(recording_time_sec * self.fps) # get num of frames (round up always)
+                                trial_match = True
+                                BATCH_OF_FRAMES = []
+                                break
+                        
+                if trial_match:
+                    if len(BATCH_OF_FRAMES) < num_of_frames_for_trial:
+                        BATCH_OF_FRAMES.append([rgbframe, self.frame_idx])
+                    else:
+                        # analysis
+                        self.run_analysis(BATCH_OF_FRAMES)
+                        BATCH_OF_FRAMES = []
+                        trial_match = False
+                else:
+                    trial_match = False
+                        
+            else:
                 break
 
 
