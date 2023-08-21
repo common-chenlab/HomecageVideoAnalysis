@@ -4,17 +4,11 @@
 # folder path to complete, error, and mat folder for TM and CV
 folder_paths = {}
 
-# path to move completed videos (training module)
-folder_paths['completetm'] = r'Z:\Projects\Homecage\DLCVideos\trainingmodule_complete'
-
 # path to move any errors caught/exceptions (training module)
 folder_paths['errortm'] =  r'Z:\Projects\Homecage\DLCVideos\trainingmodule_errors'
 
 # path to save generated .MAT files (training module)
 folder_paths['matfiletm'] = r'Z:\Projects\Homecage\DLCVideos\trainingmodule_matfiles'
-
-# path tomove completed videos (cageview)
-folder_paths['completecv'] = r'Z:\Projects\Homecage\DLC\Other\cageview_complete'
 
 # path to move any errors caught/exceptions (cageview)
 folder_paths['errorcv'] =  r'Z:\Projects\Homecage\DLC\Other\cageview_errors'
@@ -37,7 +31,7 @@ modelinfo['dlctm'] = {
                             'white': r'Z:\Projects\Homecage\DLC\VAModels\DLC\trainingmodule\whitecoat\trainingmodule_v4_white-chenlab-2022-05-04_eval\exported-models\DLC_trainingmodule_v4_white_mobilenet_v2_0.35_iteration-0_shuffle-1',
                             },
                         'body_parts': ['nose', 'leftear', 'rightear', 'neck', 'upperback', 'lowerback', 'tail', 'tail2', 'fl_foot', 'fr_foot', 'bl_foot', 'br_foot']
-                        }
+                         }
 
 # deeplabcut information for cage view
 modelinfo['dlccv'] = { 
@@ -72,6 +66,7 @@ modelinfo['objdetectLED'] = {
                                 'channels': 1
                             }
 
+# location for sensitive information
 sensitive_information_folder = r'Z:\Projects\Homecage\DLC\SensitiveInformation'
 
 
