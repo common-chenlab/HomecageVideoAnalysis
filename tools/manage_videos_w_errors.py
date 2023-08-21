@@ -29,7 +29,7 @@ def get_args():
     parser.add_argument("--copy_error_videos", '-cev', required=False, default=True, help='bool for whether to copy videos with errors to a designated folders.')
     parser.add_argument("--copy_folder", '-cf', required=False, default=None, help='designated folder for where to save videos with errors')
     args = parser.parse_args()
-    return args.video_folder_path, args.rig_list
+    return args.bvr_video_folder, args.mp4_video_folder, args.copy_error_videos, args.copy_folder
 
 
 
