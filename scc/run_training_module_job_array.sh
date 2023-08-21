@@ -25,5 +25,5 @@ rig_num_list=$@
 module load miniconda
 conda activate VideoAnalysisENV
 
-python collect_video_paths_helper.py --video_folder_path $video_folder_path --rig_list $rig_num_list
+python collect_video_paths_helper.py --video_folder_path $video_folder_path --rig_list $rig_num_list --camera_view TM
 exit

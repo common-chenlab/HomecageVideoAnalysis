@@ -18,17 +18,24 @@ def get_args():
     # required argument
     parser.add_argument("--video_folder_path", '-vfp', required=True, help='path to directory with video files.')
     parser.add_argument("--rig_list", '-rl', nargs="+", required=True, help='list of rigs to run analysis on.')
+    parser.add_argument("--camera_view", '-cv', required=True, help='camera view of video (TM/CV)')
     args = parser.parse_args()
-    return args.video_folder_path, args.rig_list
+    return args.video_folder_path, args.rig_list, args.camera_view
 
 
 
 if __name__ == "__main__":
-    VIDEO_FOLDER_PATH, rig_num_list = get_args()
+    VIDEO_FOLDER_PATH, rig_num_list, camera_view = get_args()
 
     # print arguments used
     print("video_folder_path={}".format(VIDEO_FOLDER_PATH))
     print("rig_num_list={}".format(rig_num_list))
+    print("camera_view={}".format(camera_view))
+    
+    if camera_view == "TM":
+        scc_job = "training_module_job.sh"
+    else:
+        scc_job = "cage_view_job.sh"
 
     # convert string integers to just integers
     rig_num_list = [int(i) if i.isdigit() else i for i in rig_num_list]
@@ -100,7 +107,7 @@ if __name__ == "__main__":
         "-tc", "50", 
         "-o", log_folder,
         "-e", log_folder,
-        "training_module_job.sh", 
+        scc_job, 
         json_file_path, 
         "task_array"
     ])
