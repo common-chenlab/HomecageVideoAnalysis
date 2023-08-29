@@ -5,13 +5,13 @@
 folder_paths = {}
 
 # path to move any errors caught/exceptions (training module)
-folder_paths['errortm'] =  r'Z:\Projects\Homecage\DLCVideos\trainingmodule_errors'
+folder_paths['errortm'] = r'Z:\Projects\Homecage\DLCVideos\trainingmodule_errors'
 
 # path to save generated .MAT files (training module)
 folder_paths['matfiletm'] = r'Z:\Projects\Homecage\DLCVideos\trainingmodule_matfiles'
 
 # path to move any errors caught/exceptions (cageview)
-folder_paths['errorcv'] =  r'Z:\Projects\Homecage\DLC\Other\cageview_errors'
+folder_paths['errorcv'] = r'Z:\Projects\Homecage\DLC\Other\cageview_errors'
 
 # path to save generated .MAT files (cageview)
 folder_paths['matfilecv'] = r'Z:\Projects\Homecage\DLC\Other\cageview_matfiles'
@@ -31,7 +31,7 @@ modelinfo['dlctm'] = {
                             'white': r'Z:\Projects\Homecage\DLC\VAModels\DLC\trainingmodule\whitecoat\trainingmodule_v4_white-chenlab-2022-05-04_eval\exported-models\DLC_trainingmodule_v4_white_mobilenet_v2_0.35_iteration-0_shuffle-1',
                             },
                         'body_parts': ['nose', 'leftear', 'rightear', 'neck', 'upperback', 'lowerback', 'tail', 'tail2', 'fl_foot', 'fr_foot', 'bl_foot', 'br_foot']
-                         }
+                }
 
 # deeplabcut information for cage view
 modelinfo['dlccv'] = { 
@@ -44,7 +44,7 @@ modelinfo['dlccv'] = {
                             },
                         'body_parts': ['nose', 'head', 'neck', 'upperback', 'lowerback', 'tail', 'tail2']
 
-                        }
+                }
 
 # path to coat recognition model
 modelinfo['coatrecognition'] = r'Z:\Projects\Homecage\DLC\VAModels\ImageClassification\trainingmodule\coatcolorclassifier\coat_classifier_weights_v8.h5'
@@ -64,7 +64,7 @@ modelinfo['objdetectLED'] = {
                                 'config': 'yolov7_training.cfg',
                                 'trained_image_size': (416, 416),
                                 'channels': 1
-                            }
+                        }
 
 # location for sensitive information
 sensitive_information_folder = r'Z:\Projects\Homecage\DLC\SensitiveInformation'
@@ -73,14 +73,11 @@ sensitive_information_folder = r'Z:\Projects\Homecage\DLC\SensitiveInformation'
 led_issue_info = {
     # list of rigs that had LED issues (rig numbers should be integers)
     'rig_led_issues': [11, 14, 25],
-    
+
     # path to csv files for each rig with led issues
     'led_issue_csv_paths': {
                             11: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\rig_11_trial_dt.csv',
                             14: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\rig_14_trial_dt.csv',
                             25: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\rig_25_trial_dt.csv'
-                            }
+                        }
     }
-
-
-
