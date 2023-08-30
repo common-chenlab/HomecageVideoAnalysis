@@ -43,31 +43,31 @@ if __name__ == '__main__':
         video_path_list = data[0]
 
     # update video paths w/ modified chenlab_filepaths function
-    video_path_list = [utils.ospath(path = video_path) for video_path in video_path_list]
+    video_path_list = [utils.ospath(path=video_path) for video_path in video_path_list]
 
     # move video files to scratch folder if on scc
     if sys.platform == 'linux':
-        video_path_list = utils.move_videos_2_scc_scratch(video_path_list = video_path_list)
+        video_path_list = utils.move_videos_2_scc_scratch(video_path_list=video_path_list)
 
     # initialize mouse coat recognition model
-    mousecoatrecognition = CoatClassifier(model_path = chenlab_filepaths(path = modelinfo['coatrecognition']))
+    mousecoatrecognition = CoatClassifier(model_path=chenlab_filepaths(path=modelinfo['coatrecognition']))
 
     # training module DLC model
-    tmdetectionmodel = DetectTMAnchorPts(model_path = chenlab_filepaths(modelinfo['tmdetection']))
+    tmdetectionmodel = DetectTMAnchorPts(model_path=chenlab_filepaths(modelinfo['tmdetection']))
 
     # initialize tesserocr (optical character recognition) model
-    ocr = TimestampOCR(camera_view = 'TM', model_path = chenlab_filepaths(path = modelinfo['ocr']))
+    ocr = TimestampOCR(camera_view='TM', model_path=chenlab_filepaths(path=modelinfo['ocr']))
 
     # mouse DLC models
-    mouseposemodels = DetectMousePose(model_paths = modelinfo['dlctm']['model_paths'])
-    
+    mouseposemodels = DetectMousePose(model_paths=modelinfo['dlctm']['model_paths'])
+
     # run through all videos in list
     for video_path in video_path_list:
         va_object = None
         print('\n')
         try:
-            va_object = TrainingModuleAnalysis(video_path = video_path, mouseposemodels = mouseposemodels, ocr = ocr, 
-                mousecoatrecognition = mousecoatrecognition, tmdetectionmodel = tmdetectionmodel)
+            va_object = TrainingModuleAnalysis(video_path=video_path, mouseposemodels=mouseposemodels, ocr=ocr,
+                                               mousecoatrecognition=mousecoatrecognition, tmdetectionmodel=tmdetectionmodel)
             va_object.run()
 
             del va_object
@@ -78,9 +78,8 @@ if __name__ == '__main__':
             else:
                 print("Error during initialization of video analysis for {}".format(os.path.basename(video_path)))
                 traceback.print_exc()
-                
+
             # send_slack_notification("VIDEOANALYSIS: Error w/ {}".format(os.path.basename(video_path)))
         gc.collect()
-
     print("Complete.")
     sys.exit()
