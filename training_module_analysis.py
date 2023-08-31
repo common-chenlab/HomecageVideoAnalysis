@@ -1,6 +1,7 @@
 from chenlabpylib import chenlab_filepaths
 import cv2
 import datetime
+import gc
 import math
 import numpy as np
 import os
@@ -274,8 +275,9 @@ class TrainingModuleAnalysis():
         # save trial data to .mat file
         self.save_to_matfile()
 
-        # reset trial data
-        del self.TRIALDATA
+        # reset trial data and call garbage collection
+        self.TRIALDATA = {}
+        gc.collect()
         print('----- END OF TRIAL -----\n')
 
     def camera_view_unstable(self, frame):
