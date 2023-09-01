@@ -19,6 +19,10 @@ conda activate VideoAnalysisENV
 #handle hdf5 files on scc
 export HDF5_USE_FILE_LOCKING='FALSE'
 
+#make sure Tensorflow doesn't exceed the number of cores used
+export TF_NUM_INTEROP_THREADS=$(( $NSLOTS - 1 ))
+export TF_NUM_INTRAOP_THREADS=1
+
 slptime=$(echo "scale=4 ; ($RANDOM/32768) * 10" | bc)
 sleep $slptime
 
