@@ -14,7 +14,10 @@ These glitches can cause the timestamps to be distorted etc.
 To fix this, we can export to MP4 using BlueIris directly instead of ffmpeg on the SCC
 
 This script will copy the BVR files located in <bvr_video_folder> into a new folder called <copy_folder>. 
-Then, it will create a json file with the list of videos in MP4 format to re-run analysis on """
+Then, it will create a json file with the list of videos in MP4 format to re-run analysis on
+
+Example of running Python script:
+python manage_videos_w_errors.py -bvrf video/path/folder -mp4f mp4video/path/folder -cev True -cf  copy/error/videos """
 
 
 def get_args():
