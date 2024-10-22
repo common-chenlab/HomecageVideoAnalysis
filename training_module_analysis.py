@@ -360,7 +360,7 @@ class TrainingModuleAnalysis():
             # time.sleep(0.1)
             frame, frame_idx = BATCH_OF_FRAMES[i]
             ocr_predicted = self.ocr.run_inference(frame=frame.copy())  # run OCR
-            if ocr_predicted == -1:  # use previous timestamp if ocr is blank in frame
+            if ocr_predicted == -1:  # use previous timestamp if ocr is blank in frame or if timestamp in wrong format
                 if i == init_idx:
                     raise ValueError("Problem initializing trial for frame-idx={}".format(i))
                 print('No timestamp recognized in frame. Using previous frame as timestamp ...')

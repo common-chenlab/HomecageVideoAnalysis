@@ -76,8 +76,26 @@ led_issue_info = {
 
     # path to csv files for each rig with led issues
     'led_issue_csv_paths': {
-                            11: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\rig_11_trial_dt.csv',
-                            14: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\rig_14_trial_dt.csv',
-                            25: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\rig_25_trial_dt.csv'
+                            10: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_10_trial_dt.csv',
+                            14: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_14_trial_dt.csv',
+                            11: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_11_trial_dt.csv',
+                            9: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_9_trial_dt.csv',
+                            6: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_6_trial_dt.csv',
+                            23: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_23_trial_dt.csv',
+                            18: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_18_trial_dt.csv',
+                            20: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_20_trial_dt.csv',
+                            12: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_12_trial_dt.csv',
+                            13: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_13_trial_dt.csv',
+                            8: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_8_trial_dt.csv',
+                            24: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_24_trial_dt.csv',
+                            26: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_26_trial_dt.csv',
+                            15: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_15_trial_dt.csv',
+                            19: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_19_trial_dt.csv',
+                            16: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_16_trial_dt.csv',
+                            21: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_21_trial_dt.csv',
+                            25: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_25_trial_dt.csv',
+                            17: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_17_trial_dt.csv',
+                            22: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_22_trial_dt.csv',
+                            27: r'Z:\Projects\Homecage\DLC\VAModels\LedIssueFiles\Round_2\tm_27_trial_dt.csv'
                         }
     }
