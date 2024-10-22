@@ -147,6 +147,7 @@ class TimestampOCR():
 		# double-check if timestamp predicted was blank
 		if timestamp == "":
 			# return -1 to use previous timestamp
+			print("Incorrect format of timestamp, use previous timestamp")
 			return -1
 
 		# remove characters not present in list
@@ -165,7 +166,9 @@ class TimestampOCR():
 			datestr = str(match_object[1]).strip()
 			timestr = str(match_object[2]).strip()
 		else:
-			raise ValueError("Incorrect format of timestamp:", timestamp)
+			print("Incorrect format of timestamp, use previous timestamp")
+			return -1
+			#raise ValueError("Incorrect format of timestamp:", timestamp)
 
 		# month, day, year = [int(num) for num in datestr.split(' ')]
 		# UPDATE: different way of parsing DATE
