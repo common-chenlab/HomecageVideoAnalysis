@@ -18,6 +18,9 @@
 #specify the time limit
 #$ -l h_rt=12:00:00
 
+# specify where ouput files go
+#$ -o /projectnb/jchenlab/hdante/files
+
 #path to json file
 json_file_name=$1
 
