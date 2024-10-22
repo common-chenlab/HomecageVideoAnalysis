@@ -1,7 +1,7 @@
 """ use this python file to include direct paths to folder paths and models used """
 
 
-# folder path to complete, error, and mat folder for TM and CV
+# folder path to complete, error, and mat folder for TM and CV-
 folder_paths = {}
 
 # path to move any errors caught/exceptions (training module)
