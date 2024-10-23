@@ -12,6 +12,9 @@
 #specify the time limit
 #$ -l h_rt=12:00:00
 
+# specify where ouput files go
+#$ -o /projectnb/jchenlab/hdante/files
+
 #path to directory with video files
 video_folder_path=$1
 
