@@ -72,7 +72,7 @@ sensitive_information_folder = r'Z:\Projects\Homecage\DLC\SensitiveInformation'
 
 led_issue_info = {
     # list of rigs that had LED issues (rig numbers should be integers)
-    'rig_led_issues': [11, 14, 25],
+    'rig_led_issues': [11, 25, 10, 14, 9, 6, 23, 18, 20, 12, 13, 8, 24, 26, 15, 19, 16, 21, 25, 17, 22, 27],
 
     # path to csv files for each rig with led issues
     'led_issue_csv_paths': {
